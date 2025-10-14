@@ -1,0 +1,44 @@
+<div class="row align-items-start" style="margin: 0;">
+
+    <div class="col"></div>
+
+    <div class="col-8">
+
+        <h1 style="text-align: center; margin-top: 20px;">Tasks</h1>
+        
+        <h2>Total Tasks: {{totalTasks}}</h2>
+        <h2>Completed Tasks: {{completedTasks}}</h2> 
+        <h2>Remaining Tasks: {{remainingTask}}</h2>
+
+        <table class="table table-bordered" style="margin-top: 50px">
+                <tr style="text-align: center">
+                    <th class="col-md-2">Task ID</th>
+                    <th class="col-md-6">Task Description</th>
+                    <th class="col-md-2">Date Created</th>
+                    <th class="col-md-2">Done?</th>
+                    <th class="col-md-2">Remove?</th>
+                </tr>
+                <tr *ngFor = "let task of tasks">
+                    <td style="text-align: center">
+                        {{task.id}}
+                    </td>
+                    <td style="text-align: center">
+                        <span [ngClass]="{'strikethrough': task.isDone}">{{task.desc}}</span>
+                    </td>
+                    <td>
+                        {{task.createdAt}}
+                    </td>
+                    <td style="text-align: center">
+                        <input type="checkbox" (change)="onCompleteTask($event)" [(ngModel)]="task.isDone">
+                    </td>
+                    <td style="text-align: center">
+                        <button (click) = "removeFromTaskList(task)" class="btn btn-danger">X</button>
+                    </td>
+                </tr>
+            </table>
+
+    </div>
+
+    <div class="col"></div>
+
+</div>

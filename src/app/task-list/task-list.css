@@ -1,0 +1,9 @@
+.strikethrough {
+    text-decoration: line-through;
+}
+span {
+    all: inherit;
+    border: none;
+    text-align: center;
+    display: block;
+}
