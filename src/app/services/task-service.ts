@@ -8,6 +8,7 @@ export class TaskService {
 
   tasks: Task[] = [];
   completedTasks:any[] = [];
+  isEditing = false;
 
   getTasks() {
     return this.tasks;

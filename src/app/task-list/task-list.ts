@@ -16,21 +16,46 @@ export class TaskList {
   completedTasks:number = 0;
   noOfTasks:number = 0;
   filteredTasks:any = [];
+  isEditing: boolean = false;
 
   constructor(private functions: TaskService) {}
 
   ngOnInit() {
     this.tasks = this.functions.getTasks();
+    this.filteredTasks = [...this.tasks]
+  }
+
+  enableEdit(): void {
+    this.isEditing = true;
+  }
+
+  disableEdit():void {
+    this.isEditing = false;
+  }
+
+  testEnter() {
+    alert ("WORKDSA")
+  }
+  
+  saveEdit(event: Event, id: number): void {
+    this.disableEdit();
+    const inputElement = event.target as HTMLInputElement;
+    this.tasks[id].desc = inputElement;
+  }
+  
+  onBlur(event: Event, id: number): void {
+    this.isEditing = false;
+    this.saveEdit(event, id)
   }
 
   setFilter(filter: 'all' | 'active' | 'done') {
-    if (filter == 'all') {
+    if (filter != 'done' && filter != 'active') {
       this.filteredTasks = [...this.tasks]
     }
-    if (filter == 'done') {
+    else if (filter == 'done') {
       this.filteredTasks = this.tasks.filter(tasks => tasks.isDone == true)
     }
-    if (filter == 'active') {
+    else if (filter == 'active') {
       this.filteredTasks = this.tasks.filter(tasks => tasks.isDone == false)
     }
   }
@@ -62,4 +87,5 @@ export class TaskList {
     }
     alert (taskName.name + " has been removed from the task list!");
   }
+
 }

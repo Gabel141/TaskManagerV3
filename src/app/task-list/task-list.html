@@ -28,7 +28,8 @@
                         {{task.id}}
                     </td>
                     <td style="text-align: center">
-                        <span [ngClass]="{'strikethrough': task.isDone}">{{task.desc}}</span>
+                        <span *ngIf="!isEditing" (click)="enableEdit()" [ngClass]="{'strikethrough': task.isDone}">{{task.desc}}</span>
+                        <input *ngIf="isEditing" type="text" (keydown.enter)="saveEdit($event, task.id)" (blur)="onBlur($event, task.id)" [(ngModel)]="task.desc" autofocus>
                     </td>
                     <td>
                         {{task.createdAt}}

@@ -29,7 +29,7 @@ export class TaskForm {
         break;
       }
     } while (true)
-      let currentDate: Date = new Date();
+      let currentDate: any = new Date();
       this.functions.addTask(randomId, desc, currentDate);
       alert (desc + " has been added to the task list!");
     }
