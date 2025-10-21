@@ -9,6 +9,11 @@
         <h2>Total Tasks: {{totalTasks}}</h2>
         <h2>Completed Tasks: {{completedTasks}}</h2> 
         <h2>Remaining Tasks: {{remainingTask}}</h2>
+        <h2> FILTER:
+            <button (click)="setFilter('all')" class="btn">ALL</button>
+            <button (click)="setFilter('done')" class="btn">DONE</button>
+            <button (click)="setFilter('active')" class="btn">NOT DONE</button>
+        </h2>
 
         <table class="table table-bordered" style="margin-top: 50px">
                 <tr style="text-align: center">
@@ -18,7 +23,7 @@
                     <th class="col-md-2">Done?</th>
                     <th class="col-md-2">Remove?</th>
                 </tr>
-                <tr *ngFor = "let task of tasks">
+                <tr *ngFor = "let task of filteredTasks">
                     <td style="text-align: center">
                         {{task.id}}
                     </td>

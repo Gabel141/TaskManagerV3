@@ -27,9 +27,7 @@ export class TaskService {
     this.tasks[toEdit].desc = newDesc;
   }
 
-  setFilter(filter: 'all' | 'active' | 'done') {
-    
-  }
+  filteredTasks = [...this.tasks]
 
   getTotalTasks() {
     let total = 0;
